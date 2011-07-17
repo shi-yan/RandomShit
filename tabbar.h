@@ -86,6 +86,8 @@ public:
         return rect;
     }
 
+    void wheelEvent ( QGraphicsSceneWheelEvent * event );
+
 public slots:
     void onActivated(SubscriptionTab *);
 

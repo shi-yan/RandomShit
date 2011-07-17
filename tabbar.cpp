@@ -1,5 +1,6 @@
 #include "tabbar.h"
 #include <QDebug>
+#include <QGraphicsSceneWheelEvent>
 
 void TabBar::addNewTab(const QString &tabName)
 {
@@ -117,7 +118,7 @@ void TabBar::onBarReleased(enum TabBarHandle::Direction dir,int speed)
 
         if(currentTabBarHandleStatus==CLOSED)
         {
-            openCloseAnimationTimer.setDuration(5*300);
+            openCloseAnimationTimer.setDuration(2*tabBarWidth);
 
             openCloseAnimationTimer.setFrameRange(0,100);
 
@@ -133,7 +134,7 @@ void TabBar::onBarReleased(enum TabBarHandle::Direction dir,int speed)
         }
         else if(currentTabBarHandleStatus==OPENNED)
         {
-            openCloseAnimationTimer.setDuration(5*300);
+            openCloseAnimationTimer.setDuration(2*tabBarWidth);
 
             openCloseAnimationTimer.setFrameRange(0,100);
 
@@ -150,4 +151,23 @@ void TabBar::onBarReleased(enum TabBarHandle::Direction dir,int speed)
     }
 
     openCloseAnimationTimer.start();
+}
+
+
+void TabBar::wheelEvent ( QGraphicsSceneWheelEvent * event )
+{
+    int offset=event->delta();
+
+
+    subscriptionTabOffset-=offset;
+
+    if(subscriptionTabOffset<rect.height()-subscriptionTabList.size()*46)
+        subscriptionTabOffset=rect.height()-subscriptionTabList.size()*46;
+    else if(subscriptionTabOffset>0)
+        subscriptionTabOffset=0;
+
+    for(int i=0;i<subscriptionTabList.size();++i)
+    {
+        subscriptionTabList[i]->setPos(0,i*46+subscriptionTabOffset);
+    }
 }

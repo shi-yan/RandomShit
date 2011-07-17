@@ -218,10 +218,19 @@ void GoogleReaderAPI::onGetSubscriptionListFinished(QNetworkReply *reply)
 
         else
         {
-            QString substriptionListJSON=reply->readAll();
+            QString subscriptionListJSON=reply->readAll();
+
+            QFile subscriptionOutput("subscriptionlist.json");
+            subscriptionOutput.open(QIODevice::WriteOnly);
+
+            subscriptionOutput.write(QByteArray().append(subscriptionListJSON));
+
+            subscriptionOutput.close();
+
+
             QJson::Parser parser;
             QByteArray json;
-            json.append(substriptionListJSON);
+            json.append(subscriptionListJSON);
             bool ok=false;
             QVariantMap result = parser.parse (json, &ok).toMap();
 

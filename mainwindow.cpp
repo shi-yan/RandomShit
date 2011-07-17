@@ -117,15 +117,15 @@ void MainWindow::showEvent ( QShowEvent * event )
         bool result=GoogleOauthDialog::getSingleton().exec();
         if(result)
         {
-            //   Fetcher::getSingleton().getSubscriptionListFromServer();
+             //  Fetcher::getSingleton().getSubscriptionListFromServer();
             Fetcher::getSingleton().getSubscriptionListFromDatabase();
        //     Fetcher::getSingleton().startFetcher(5);
         }
     }
     else
     {
-        Fetcher::getSingleton().getSubscriptionListFromDatabase();
-        //  Fetcher::getSingleton().getSubscriptionListFromServer();
+       Fetcher::getSingleton().getSubscriptionListFromDatabase();
+      //    Fetcher::getSingleton().getSubscriptionListFromServer();
       //  Fetcher::getSingleton().startFetcher(5);
     }
 
