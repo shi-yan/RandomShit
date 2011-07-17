@@ -36,7 +36,9 @@ SOURCES += main.cpp\
     tabbar.cpp \
     tabbarhandle.cpp \
     navigationbarbutton.cpp \
-    navigationbar.cpp
+    navigationbar.cpp \
+    layoutpanelrect.cpp \
+    layouttreenode.cpp
 
 HEADERS  += mainwindow.h \
     json/stack.hh \
@@ -69,7 +71,9 @@ HEADERS  += mainwindow.h \
     tabbar.h \
     tabbarhandle.h \
     navigationbarbutton.h \
-    navigationbar.h
+    navigationbar.h \
+    layoutpanelrect.h \
+    layouttreenode.h
 
 FORMS    +=
 

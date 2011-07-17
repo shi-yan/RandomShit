@@ -9,7 +9,6 @@ class NavigationBarButton:public QGraphicsObject
 {
     Q_OBJECT
 
-
     QRect rect;
 
 public:
@@ -18,9 +17,7 @@ public:
 
     }
 
-
     void paint ( QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget = 0);
-
 
     QRectF boundingRect() const
     {
@@ -28,12 +25,8 @@ public:
     }
 
      void mouseMoveEvent ( QGraphicsSceneMouseEvent * event );
-
      void mousePressEvent ( QGraphicsSceneMouseEvent * event );
-
      void mouseReleaseEvent ( QGraphicsSceneMouseEvent * event );
-
-
 
 signals:
      void released();

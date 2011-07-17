@@ -37,7 +37,14 @@ void TabBar::onSubscriptionTabPressed(QPoint mousePos)
 void TabBar::onSubscriptionTabMoved(QPoint mousePos)
 {
     int offset=mousePos.y()-currentSubscriptionTabOffset;
+
+
     subscriptionTabOffset+=offset;
+
+    if(subscriptionTabOffset<rect.height()-subscriptionTabList.size()*46)
+        subscriptionTabOffset=rect.height()-subscriptionTabList.size()*46;
+    else if(subscriptionTabOffset>0)
+        subscriptionTabOffset=0;
 
     for(int i=0;i<subscriptionTabList.size();++i)
     {
@@ -49,7 +56,8 @@ void TabBar::onSubscriptionTabMoved(QPoint mousePos)
 
 void TabBar::onBarDraggedTo(int pos)
 {
-     openCloseAnimationTimer.stop();
+    openCloseAnimationTimer.stop();
+
     if((pos-tabBarWidth+5)>0)
     {
         setPos(QPointF(0,0));
@@ -65,7 +73,8 @@ void TabBar::onBarDraggedTo(int pos)
 }
 
 void TabBar::onBarReleased(enum TabBarHandle::Direction dir,int speed)
-{  openCloseAnimationTimer.stop();
+{
+    openCloseAnimationTimer.stop();
 
     if(dir==TabBarHandle::OPEN)
     {
@@ -140,7 +149,5 @@ void TabBar::onBarReleased(enum TabBarHandle::Direction dir,int speed)
         }
     }
 
-     openCloseAnimationTimer.start();
-
-    qDebug()<<"fuck animation!";
+    openCloseAnimationTimer.start();
 }
